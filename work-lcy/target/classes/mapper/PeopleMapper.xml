@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lcy.dao.PeopleMapper">
+  <resultMap id="BaseResultMap" type="com.lcy.bean.People">
+    <id column="no" jdbcType="INTEGER" property="no" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="birthday" jdbcType="VARCHAR" property="birthday" />
+    <result column="tel" jdbcType="VARCHAR" property="tel" />
+    <result column="count" jdbcType="INTEGER" property="count" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_people
+    where no = #{no,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lcy.bean.People">
+    insert into tb_people (no, name, sex, 
+      birthday, tel, count
+      )
+    values (#{no,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
+      #{birthday,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{count,jdbcType=INTEGER}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lcy.bean.People">
+    update tb_people
+    set name = #{name,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      count = #{count,jdbcType=INTEGER}
+    where no = #{no,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select no, name, sex, birthday, tel, count
+    from tb_people
+    where no = #{no,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select no, name, sex, birthday, tel, count
+    from tb_people
+  </select>
+
+  <select id="getCount" resultType="int">
+    select count(*) from tb_people
+  </select>
+
+  <!-- -->
+  <select id="selectLike" parameterType="com.lcy.bean.People" resultMap="BaseResultMap">
+    select * from tb_people where 1=1
+    <if test="#{name!=null and name!=''}">
+      and name like '%${name}%'
+    </if>
+  </select>
+
+</mapper>
