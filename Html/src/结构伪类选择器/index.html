@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>结构伪类选择器</title>
+
+    <style>
+        /*ul的第一个子元素*/
+        ul li:first-child{
+            background: green;
+        }
+        /*ul的最后一个子元素*/
+        ul li:last-child{
+            background: #2700ff;
+        }
+
+        /*选中p1 定位到父元素，选择当前的第一个元素
+        选择当前p元素的父级选用，选中父级元素的第一个
+        并且是当前元素
+        */
+        p:nth-child(1)P{
+            background: cadetblue;
+        }
+
+        /*选中父元素下的p元素的第二个类型*/
+        p:nth-of-type(1){
+            background: yellow;
+        }
+
+
+    </style>
+
+</head>
+<body>
+<h1>h1</h1>
+<p>p1</p>
+<p>p1</p>
+<p>p1</p>
+<ul>
+    <li>li1</li>
+    <li>li2</li>
+    <li>li3</li>
+</ul>
+
+</body>
+</html>
